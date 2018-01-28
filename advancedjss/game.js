@@ -29,3 +29,5 @@ function askLetter(){
             console.log(wordObject.display());
             guesses--;
             askLetter();
+
+           
