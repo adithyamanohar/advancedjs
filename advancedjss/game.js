@@ -30,4 +30,32 @@ function askLetter(){
             guesses--;
             askLetter();
 
-           
+            if (guesses === 0 && Letter.found === false) {
+                guesses = 5;
+                wordToPlay = animals[Math.floor(Math.random()*animals.length)];
+                wordObject = new Word(wordToPlay);
+                wordObject.makeAndPushLettersIntoWord();
+                wordObject.updateLetter(data.guess);
+                console.log(" ");
+                console.log("Game restarted because you ran out of guesses, here if your new word");
+                console.log("Guesses left: " + guesses);
+                console.log(wordObject.display());
+                askLetter();
+            }
+
+        } else if (data.guess === 'restart') {
+            guesses = 5;
+            wordObject = new Word(animals[Math.floor(Math.random()*animals.length)])
+            wordObject.makeAndPushLettersIntoWord();
+            wordObject.updateLetter(data.guess);
+            console.log(" ");
+            console.log("Game restarted");
+            console.log(guesses + " guesses left " + wordObject.display());
+            askLetter();
+        }
+
+
+    });
+}
+
+askLetter();
